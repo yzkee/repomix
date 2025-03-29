@@ -1,6 +1,6 @@
 {
   "name": "repomix",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "A tool to pack repository contents to single file for AI consumption",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
@@ -98,6 +98,7 @@
     "rimraf": "^6.0.1",
     "secretlint": "^9.2.0",
     "typescript": "^5.8.2",
+    "vite": "^5.4.15",
     "vitest": "^3.0.8"
   },
   "engines": {

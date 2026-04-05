@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775363220784,
+  "lastUpdate": 1775406256037,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -270,6 +270,51 @@ window.BENCHMARK_DATA = {
             "range": "±22",
             "unit": "ms",
             "extra": "Median of 19 runs\nQ1: 2446ms, Q3: 2468ms\nAll times: 2407, 2411, 2434, 2441, 2446, 2447, 2450, 2451, 2452, 2452, 2454, 2456, 2457, 2466, 2468, 2474, 2478, 2495, 2511ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4a0eb983a5d63457125c930db7b5d8e7fbd4f74c",
+          "message": "Merge pull request #1403 from yamadashy/fix/block-bot-pack-requests\n\nfix(server): Block bot/crawler requests to prevent OOM crashes",
+          "timestamp": "2026-04-05T22:52:57+09:00",
+          "tree_id": "f391d2965c09473e0c0f9848ce4cd62248e67e59",
+          "url": "https://github.com/yzkee/repomix/commit/4a0eb983a5d63457125c930db7b5d8e7fbd4f74c"
+        },
+        "date": 1775406255218,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 2250,
+            "range": "±485",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 2031ms, Q3: 2516ms\nAll times: 1330, 1379, 1398, 1489, 1689, 1892, 1978, 2031, 2068, 2132, 2134, 2144, 2168, 2177, 2240, 2250, 2255, 2293, 2336, 2376, 2391, 2429, 2516, 2545, 2590, 2601, 2683, 2720, 2765, 2955ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1949,
+            "range": "±25",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1935ms, Q3: 1960ms\nAll times: 1905, 1912, 1921, 1926, 1932, 1935, 1941, 1942, 1942, 1949, 1949, 1954, 1957, 1958, 1960, 1960, 1964, 1965, 1968, 2000ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 2417,
+            "range": "±44",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 2393ms, Q3: 2437ms\nAll times: 2376, 2384, 2388, 2392, 2393, 2393, 2406, 2409, 2409, 2411, 2417, 2426, 2427, 2429, 2432, 2437, 2440, 2453, 2454, 2473ms"
           }
         ]
       }

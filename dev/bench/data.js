@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1775708922802,
+  "lastUpdate": 1775881202490,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -405,6 +405,51 @@ window.BENCHMARK_DATA = {
             "range": "±220",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 2316ms, Q3: 2536ms\nAll times: 2292, 2292, 2293, 2300, 2308, 2316, 2321, 2335, 2339, 2343, 2384, 2452, 2464, 2465, 2497, 2536, 2538, 2600, 2646, 2921ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "afbab35a6d9fee3ef9f99dc871d498d3d024716f",
+          "message": "Merge pull request #1436 from yamadashy/perf/lazy-load-heavy-modules\n\nperf(core): Lazy-load handlebars, fast-xml-builder, and @clack/prompts",
+          "timestamp": "2026-04-11T12:59:11+09:00",
+          "tree_id": "e029b0add1a0b86d923d238fcf85c197932b73d7",
+          "url": "https://github.com/yzkee/repomix/commit/afbab35a6d9fee3ef9f99dc871d498d3d024716f"
+        },
+        "date": 1775881201689,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 1630,
+            "range": "±434",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 1478ms, Q3: 1912ms\nAll times: 1231, 1232, 1284, 1329, 1361, 1393, 1421, 1478, 1502, 1536, 1546, 1573, 1613, 1613, 1626, 1630, 1640, 1642, 1642, 1655, 1723, 1821, 1912, 1935, 1941, 2005, 2033, 2164, 2218, 2282ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1903,
+            "range": "±27",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1892ms, Q3: 1919ms\nAll times: 1870, 1880, 1887, 1887, 1888, 1892, 1895, 1900, 1901, 1902, 1903, 1904, 1912, 1914, 1915, 1919, 1920, 1921, 1928, 1934ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 2344,
+            "range": "±53",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 2323ms, Q3: 2376ms\nAll times: 2307, 2311, 2311, 2316, 2322, 2323, 2335, 2336, 2341, 2342, 2344, 2346, 2349, 2354, 2363, 2376, 2378, 2380, 2381, 2394ms"
           }
         ]
       }

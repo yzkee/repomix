@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1776529628196,
+  "lastUpdate": 1776572349364,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -765,6 +765,51 @@ window.BENCHMARK_DATA = {
             "range": "±498",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1967ms, Q3: 2465ms\nAll times: 1938, 1943, 1945, 1957, 1957, 1967, 1971, 1973, 1974, 1979, 1993, 1996, 2030, 2136, 2450, 2465, 2477, 2525, 2558, 2608ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9f6d0b5bdba0d8bea746d065cb28cff2b444b1ce",
+          "message": "Merge pull request #1489 from yamadashy/perf/try-valibot\n\nperf(config): Migrate configSchema from zod to valibot (experimental)",
+          "timestamp": "2026-04-19T10:39:01+09:00",
+          "tree_id": "3bc3369dd07cdd1654ae8481861ab5069086eb5a",
+          "url": "https://github.com/yzkee/repomix/commit/9f6d0b5bdba0d8bea746d065cb28cff2b444b1ce"
+        },
+        "date": 1776572348628,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 1439,
+            "range": "±213",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 1285ms, Q3: 1498ms\nAll times: 1048, 1093, 1151, 1196, 1224, 1235, 1284, 1285, 1291, 1334, 1346, 1349, 1377, 1382, 1433, 1439, 1445, 1452, 1452, 1461, 1477, 1493, 1498, 1513, 1529, 1558, 1561, 1576, 1644, 1965ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1443,
+            "range": "±33",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1423ms, Q3: 1456ms\nAll times: 1400, 1407, 1411, 1413, 1413, 1423, 1427, 1428, 1434, 1442, 1443, 1443, 1446, 1448, 1452, 1456, 1461, 1474, 1475, 1536ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 2186,
+            "range": "±457",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1813ms, Q3: 2270ms\nAll times: 1773, 1777, 1791, 1807, 1808, 1813, 1821, 1892, 1973, 2181, 2186, 2195, 2195, 2211, 2222, 2270, 2288, 2320, 2358, 2359ms"
           }
         ]
       }

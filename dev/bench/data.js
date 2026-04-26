@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777133894395,
+  "lastUpdate": 1777198799272,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -990,6 +990,51 @@ window.BENCHMARK_DATA = {
             "range": "±98",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1838ms, Q3: 1936ms\nAll times: 1803, 1817, 1825, 1836, 1836, 1838, 1838, 1857, 1858, 1872, 1884, 1893, 1904, 1917, 1919, 1936, 1946, 1983, 2030, 2076ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "28b57679262ee6816d8f937dc87e70369e84ff44",
+          "message": "Merge pull request #1516 from yamadashy/claude/sleepy-tesla-vUjfm\n\nperf(core): Automated performance tuning by Claude",
+          "timestamp": "2026-04-26T18:41:58+09:00",
+          "tree_id": "72fabf0e3792edffa560070757abd7c5378e9340",
+          "url": "https://github.com/yzkee/repomix/commit/28b57679262ee6816d8f937dc87e70369e84ff44"
+        },
+        "date": 1777198798945,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 877,
+            "range": "±67",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 839ms, Q3: 906ms\nAll times: 814, 820, 821, 823, 835, 837, 838, 839, 845, 846, 857, 861, 867, 872, 877, 877, 877, 881, 886, 891, 894, 898, 906, 907, 922, 947, 957, 1107, 1144, 1252ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1332,
+            "range": "±19",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1319ms, Q3: 1338ms\nAll times: 1293, 1313, 1317, 1317, 1318, 1319, 1320, 1324, 1325, 1326, 1332, 1333, 1333, 1335, 1336, 1338, 1344, 1351, 1368, 1379ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1841,
+            "range": "±38",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1821ms, Q3: 1859ms\nAll times: 1787, 1795, 1816, 1819, 1819, 1821, 1833, 1836, 1838, 1841, 1841, 1842, 1849, 1850, 1854, 1859, 1865, 1893, 1911, 1916ms"
           }
         ]
       }

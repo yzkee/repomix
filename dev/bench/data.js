@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777522799116,
+  "lastUpdate": 1777587563207,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -1125,6 +1125,51 @@ window.BENCHMARK_DATA = {
             "range": "±38",
             "unit": "ms",
             "extra": "Median of 19 runs\nQ1: 1634ms, Q3: 1672ms\nAll times: 1607, 1612, 1629, 1629, 1634, 1638, 1639, 1639, 1649, 1653, 1654, 1657, 1659, 1664, 1672, 1675, 1682, 1684, 1712ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "253b95fba5a7117ebfbee5147a4861746459aad6",
+          "message": "Merge pull request #1525 from yamadashy/feat/nix-flake-devshell\n\nfeat(nix): Add Nix flake with development shell",
+          "timestamp": "2026-05-01T00:41:32+09:00",
+          "tree_id": "d94fd2a6bab89f43b201cc6132c3dc7ddf64894c",
+          "url": "https://github.com/yzkee/repomix/commit/253b95fba5a7117ebfbee5147a4861746459aad6"
+        },
+        "date": 1777587562172,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 1298,
+            "range": "±157",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 1252ms, Q3: 1409ms\nAll times: 1148, 1200, 1205, 1209, 1214, 1215, 1246, 1252, 1253, 1260, 1263, 1264, 1266, 1276, 1296, 1298, 1318, 1325, 1336, 1350, 1356, 1383, 1409, 1500, 1543, 1553, 1559, 1578, 1591, 1604ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1347,
+            "range": "±80",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1322ms, Q3: 1402ms\nAll times: 1294, 1305, 1316, 1318, 1321, 1322, 1327, 1327, 1332, 1340, 1347, 1353, 1357, 1370, 1385, 1402, 1406, 1539, 1554, 1613ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1730,
+            "range": "±51",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1719ms, Q3: 1770ms\nAll times: 1686, 1689, 1698, 1716, 1717, 1719, 1721, 1723, 1723, 1729, 1730, 1743, 1746, 1758, 1766, 1770, 1790, 1800, 1804, 1987ms"
           }
         ]
       }

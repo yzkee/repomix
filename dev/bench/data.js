@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1777999084124,
+  "lastUpdate": 1778128345326,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -1350,6 +1350,51 @@ window.BENCHMARK_DATA = {
             "range": "±35",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1686ms, Q3: 1721ms\nAll times: 1670, 1670, 1678, 1681, 1681, 1686, 1689, 1694, 1697, 1703, 1704, 1707, 1709, 1710, 1711, 1721, 1722, 1726, 1735, 1745ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "b99706131b26b68e0d72aab7f93fccebad1460c0",
+          "message": "Merge pull request #1515 from yamadashy/feat/dart-extra-definitions\n\nfeat(core): Capture mixin, typedef, getter, setter, and factory in Dart query",
+          "timestamp": "2026-05-06T22:28:35+09:00",
+          "tree_id": "01b750aa212658cce3cbc004558584657d90cd08",
+          "url": "https://github.com/yzkee/repomix/commit/b99706131b26b68e0d72aab7f93fccebad1460c0"
+        },
+        "date": 1778128344699,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 1184,
+            "range": "±374",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 987ms, Q3: 1361ms\nAll times: 795, 837, 888, 913, 946, 958, 966, 987, 995, 1006, 1015, 1055, 1091, 1143, 1159, 1184, 1192, 1201, 1219, 1279, 1305, 1327, 1361, 1362, 1363, 1389, 1465, 1478, 1491, 1570ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 1456,
+            "range": "±43",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1432ms, Q3: 1475ms\nAll times: 1418, 1426, 1426, 1428, 1432, 1432, 1443, 1445, 1446, 1454, 1456, 1462, 1462, 1463, 1463, 1475, 1480, 1480, 1494, 1507ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1853,
+            "range": "±57",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1826ms, Q3: 1883ms\nAll times: 1792, 1807, 1813, 1814, 1816, 1826, 1830, 1840, 1842, 1847, 1853, 1855, 1862, 1865, 1881, 1883, 1890, 1919, 1922, 2294ms"
           }
         ]
       }

@@ -2,6 +2,7 @@ import { computed, onMounted, ref } from 'vue';
 import type { DisplayProgressStage, FileInfo, PackResult } from '../components/api/client';
 import { handlePackRequest } from '../components/utils/requestHandlers';
 import { isValidRemoteValue } from '../components/utils/validation';
+import { isBot } from '../utils/botDetect';
 import { parseUrlParameters } from '../utils/urlParams';
 import { abortMessage, acquireTurnstileToken } from './turnstileSubmit';
 import { usePackOptions } from './usePackOptions';
@@ -89,6 +90,16 @@ export function usePackRequest() {
     userTouched,
     loading,
     onTrigger: () => {
+      // Skip background pre-mint for known crawlers. These visitors can't
+      // solve the Turnstile challenge anyway (the JS challenge requires
+      // real browser fingerprints), so issuing one only inflates the CF
+      // dashboard "提示チャレンジ" / "未解決" counters without producing a
+      // usable token. The actual security gate is the server-side
+      // siteverify in turnstileMiddleware — that stays unchanged, so a
+      // crawler that spoofs UA past `isBot()` still gets blocked there.
+      // Submit-path takeToken is intentionally NOT gated to avoid
+      // false-positive lockouts of legit users with unusual UAs.
+      if (isBot()) return;
       turnstile.preMintToken().catch(() => {
         /* errors surface on the actual submit path */
       });
@@ -224,12 +235,14 @@ export function usePackRequest() {
         // Repeat-pack convenience: warm the cache for a likely follow-up
         // submission (option tweak + repack, or `repackWithSelectedFiles`
         // triggered from the result view). Skipped on abort/cancel since
-        // the user may have given up, and on invalid form (user may have
-        // cleared the URL mid-request). userTouched is necessarily true
+        // the user may have given up, on invalid form (user may have
+        // cleared the URL mid-request), and on bot-shaped UAs (same
+        // rationale as the debounce gate above — avoid burning a CF
+        // challenge that can't be solved). userTouched is necessarily true
         // here — it was a precondition for isSubmitValid to be true at
         // submit start. Failures swallow silently — they surface on the
         // next click via takeToken's cold path.
-        if (!controller.signal.aborted && isSubmitValid.value) {
+        if (!controller.signal.aborted && isSubmitValid.value && !isBot()) {
           turnstile.preMintToken().catch(() => {});
         }
       }

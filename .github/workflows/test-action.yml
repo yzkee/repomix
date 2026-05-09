@@ -32,12 +32,14 @@ jobs:
         if: matrix['test-case'] == 'minimal'
         uses: ./.github/actions/repomix
         with:
+          node-version: ${{ matrix.node-version }}
           output: "repomix-minimal-output.txt"
 
       - name: Run Repomix Action (Basic)
         if: matrix['test-case'] == 'basic'
         uses: ./.github/actions/repomix
         with:
+          node-version: ${{ matrix.node-version }}
           directories: "src"
           include: "**/*.ts"
           output: "repomix-basic-output.txt"
@@ -47,6 +49,7 @@ jobs:
         if: matrix['test-case'] == 'full'
         uses: ./.github/actions/repomix
         with:
+          node-version: ${{ matrix.node-version }}
           directories: "src tests"
           include: "**/*.ts,**/*.md"
           ignore: "**/*.test.ts"

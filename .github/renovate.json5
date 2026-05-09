@@ -67,6 +67,28 @@
       matchUpdateTypes: ['major'],
       groupName: 'github-actions major dependencies',
     },
+    // Dockerfiles
+    {
+      matchManagers: ['dockerfile'],
+      matchUpdateTypes: ['minor', 'patch'],
+      groupName: 'dockerfile non-major dependencies',
+    },
+    {
+      matchManagers: ['dockerfile'],
+      matchUpdateTypes: ['major'],
+      groupName: 'dockerfile major dependencies',
+    },
+    // Nix flake
+    {
+      matchManagers: ['nix'],
+      matchUpdateTypes: ['minor', 'patch'],
+      groupName: 'nix non-major dependencies',
+    },
+    {
+      matchManagers: ['nix'],
+      matchUpdateTypes: ['major'],
+      groupName: 'nix major dependencies',
+    },
   ],
   "ignoreDeps": [
     "node",

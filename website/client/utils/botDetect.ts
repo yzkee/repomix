@@ -1,12 +1,17 @@
 import { isbot } from 'isbot';
 
-// Cache the per-session result. `navigator.userAgent` is immutable for the
-// life of the page, and `isbot()` runs a non-trivial regex match — caching
-// avoids re-parsing the UA on every Turnstile pre-mint debounce or
-// post-submit re-mint check. The SSR fallback (`navigator === undefined`)
-// is intentionally NOT cached so that if the same module instance is
-// somehow reused between SSR and CSR, the CSR path still reaches the real
-// UA check on first call.
+// Cache the `isbot()` result keyed by the UA string itself. In a browser
+// `navigator.userAgent` is immutable for the page lifetime so this acts
+// as a per-session memo, avoiding a non-trivial regex match on every
+// Turnstile pre-mint debounce / post-submit re-mint check. In any Node
+// context where the same module instance might be reused across requests
+// (VitePress SSG, dev server, preview server with `navigator` polyfilled)
+// the UA-keyed cache invalidates automatically when a different UA shows
+// up, so a long-lived process can't hand a stale answer to the next
+// caller. The SSR fallback (`navigator === undefined`) intentionally
+// returns false without caching, since absence of UA isn't a stable
+// signal worth memoizing.
+let cachedFor: string | undefined;
 let cached: boolean | undefined;
 
 /**
@@ -17,8 +22,10 @@ export function isBot(): boolean {
   if (typeof navigator === 'undefined') {
     return false;
   }
-  if (cached === undefined) {
-    cached = isbot(navigator.userAgent);
+  const ua = navigator.userAgent;
+  if (cachedFor !== ua) {
+    cached = isbot(ua);
+    cachedFor = ua;
   }
-  return cached;
+  return cached as boolean;
 }

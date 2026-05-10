@@ -12,6 +12,7 @@ import { calculateGitLogMetrics } from './calculateGitLogMetrics.js';
 import { calculateOutputMetrics } from './calculateOutputMetrics.js';
 import { type MetricsTaskRunner, runTokenCount } from './metricsWorkerRunner.js';
 import type { TokenEncoding } from './TokenCounter.js';
+import { contentCacheKey, getCached, setCached } from './tokenCountCache.js';
 import type { MetricsWorkerResult, MetricsWorkerTask } from './workers/calculateMetricsWorker.js';
 
 export interface CalculateMetricsResult {
@@ -159,10 +160,22 @@ export const calculateMetrics = async (
         ? (async () => {
             // Dispatch wrapper tokenization immediately — a worker may already be
             // idle while file metrics batches still occupy the other workers.
-            const wrapperTokensPromise = runTokenCount(taskRunner, {
-              content: outputWrapper,
-              encoding: config.tokenCount.encoding,
-            });
+            // The wrapper string is byte-stable across runs whenever the file
+            // set, headers, instructions, and template format are unchanged, so
+            // we reuse the same content-addressed disk cache as per-file token
+            // counts. Any change to the wrapper automatically misses.
+            const wrapperCacheKey = contentCacheKey(config.tokenCount.encoding, outputWrapper);
+            const cachedWrapperTokens = getCached(wrapperCacheKey);
+            const wrapperTokensPromise =
+              cachedWrapperTokens !== undefined
+                ? Promise.resolve(cachedWrapperTokens)
+                : runTokenCount(taskRunner, {
+                    content: outputWrapper,
+                    encoding: config.tokenCount.encoding,
+                  }).then((tokens) => {
+                    setCached(wrapperCacheKey, tokens);
+                    return tokens;
+                  });
             const [allFileMetrics, wrapperTokens] = await Promise.all([fileMetricsPromise, wrapperTokensPromise]);
             const fileTokensSum = allFileMetrics.reduce((sum, f) => sum + f.tokenCount, 0);
             logger.trace(

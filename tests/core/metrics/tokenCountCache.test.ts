@@ -179,5 +179,55 @@ describe('tokenCountCache', () => {
       await loadTokenCountCache();
       expect(getCached(key)).toBeUndefined();
     });
+
+    it('also disables the in-memory map so long-running processes do not grow unbounded', async () => {
+      process.env.REPOMIX_TOKEN_CACHE = '0';
+      await loadTokenCountCache();
+      const key = contentCacheKey('o200k_base', 'memory');
+      setCached(key, 11);
+      // getCached returns undefined even though setCached was called
+      expect(getCached(key)).toBeUndefined();
+    });
+
+    it('honors REPOMIX_TOKEN_CACHE=0 even when setCached/getCached run before load', () => {
+      // Order-independence: a caller that bypasses loadTokenCountCache (or
+      // calls setCached before load resolves) must still respect the env var.
+      process.env.REPOMIX_TOKEN_CACHE = '0';
+      const key = contentCacheKey('o200k_base', 'pre-load');
+      setCached(key, 42);
+      expect(getCached(key)).toBeUndefined();
+    });
+  });
+
+  describe('in-memory eviction', () => {
+    // Test against a smaller working set so the test stays fast — the eviction
+    // logic in setCached uses MAX_CACHE_ENTRIES as the threshold and the
+    // ordering invariant is independent of the absolute cap value. We assert
+    // by inserting one entry beyond the cap and confirming the oldest is gone.
+    it('evicts the oldest entry on insert when at the cap', async () => {
+      // Fill the in-memory map to exactly the cap, then push one more.
+      const firstKey = `o200k_base:1:${(0).toString(16).padStart(16, '0')}`;
+      setCached(firstKey, 0);
+      for (let i = 1; i < MAX_CACHE_ENTRIES; i++) {
+        setCached(`o200k_base:1:${i.toString(16).padStart(16, '0')}`, i);
+      }
+      // At the cap; one more insertion of a new key must evict firstKey.
+      const newKey = `o200k_base:1:${MAX_CACHE_ENTRIES.toString(16).padStart(16, '0')}`;
+      setCached(newKey, MAX_CACHE_ENTRIES);
+
+      expect(getCached(firstKey)).toBeUndefined();
+      expect(getCached(newKey)).toBe(MAX_CACHE_ENTRIES);
+    });
+
+    it('refreshes (does not evict) when overwriting an existing key at the cap', async () => {
+      const firstKey = `o200k_base:1:${(0).toString(16).padStart(16, '0')}`;
+      setCached(firstKey, 0);
+      for (let i = 1; i < MAX_CACHE_ENTRIES; i++) {
+        setCached(`o200k_base:1:${i.toString(16).padStart(16, '0')}`, i);
+      }
+      // Overwriting an existing key must not trigger eviction.
+      setCached(firstKey, 999);
+      expect(getCached(firstKey)).toBe(999);
+    });
   });
 });

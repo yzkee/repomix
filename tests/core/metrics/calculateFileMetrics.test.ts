@@ -66,6 +66,31 @@ describe('calculateFileMetrics', () => {
     expect(result).toEqual([]);
   });
 
+  // Guards multi-root packs: the same relative path can appear with different
+  // content from different roots. Results must be returned per input index,
+  // not collapsed by path.
+  it('keeps duplicate relative paths separate when contents differ', async () => {
+    const processedFiles: ProcessedFile[] = [
+      { path: 'README.md', content: 'first root content' },
+      { path: 'README.md', content: 'second root content — much longer payload here' },
+    ];
+    const targetFilePaths = processedFiles.map((f) => f.path);
+    const progressCallback: RepomixProgressCallback = vi.fn();
+
+    const result = await calculateFileMetrics(processedFiles, targetFilePaths, 'o200k_base', progressCallback, {
+      taskRunner: mockInitTaskRunner({ numOfTasks: 2, workerType: 'calculateMetrics', runtime: 'worker_threads' }),
+    });
+
+    expect(result).toHaveLength(2);
+    expect(result[0].path).toBe('README.md');
+    expect(result[1].path).toBe('README.md');
+    expect(result[0].charCount).toBe(processedFiles[0].content.length);
+    expect(result[1].charCount).toBe(processedFiles[1].content.length);
+    // Different content → different token counts; the merge must not pick the
+    // same FileMetrics for both indices.
+    expect(result[0].tokenCount).not.toBe(result[1].tokenCount);
+  });
+
   // Guards the batching path: files spanning multiple batches must still
   // produce correctly-ordered, complete results, and the progress callback
   // must fire once per batch (not per file, not just once at the end).

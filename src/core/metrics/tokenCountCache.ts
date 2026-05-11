@@ -9,9 +9,12 @@ import type { TokenEncoding } from './tokenEncodings.js';
 // stale caches are discarded silently.
 const CACHE_VERSION = 1;
 
-// Hard cap on the number of entries persisted to disk. At ~32 bytes per JSON
-// entry, 100k entries ≈ 3 MB. Eviction is FIFO on insertion order — when the
-// cap is exceeded the oldest entries are dropped at save time.
+// Hard cap on the number of entries held in memory and persisted to disk. At
+// ~32 bytes per JSON entry, 100k entries ≈ 3 MB. Eviction is FIFO on Map
+// insertion order, applied both on `setCached` (to bound the working set in
+// long-running processes such as the MCP server) and again on save (defence
+// in depth — the file cannot exceed the cap even if the eviction logic ever
+// breaks).
 export const MAX_CACHE_ENTRIES = 100_000;
 
 // Cache lives under $TMPDIR/repomix/cache/, sharing the `repomix/` umbrella
@@ -146,10 +149,21 @@ export const contentCacheKey = (encoding: TokenEncoding, content: string): strin
 };
 
 export const getCached = (key: string): number | undefined => {
+  if (isCacheDisabled()) return undefined;
   return state.entries.get(key);
 };
 
 export const setCached = (key: string, tokenCount: number): void => {
+  if (isCacheDisabled()) return;
+  // Evict the oldest entry when inserting a new key over the cap so the
+  // in-memory working set stays bounded in long-running processes (e.g. the
+  // MCP server). Existing keys are refreshed without eviction.
+  if (!state.entries.has(key) && state.entries.size >= MAX_CACHE_ENTRIES) {
+    const oldest = state.entries.keys().next().value;
+    if (oldest !== undefined) {
+      state.entries.delete(oldest);
+    }
+  }
   state.entries.set(key, tokenCount);
   state.dirty = true;
 };

@@ -38,28 +38,30 @@ export const calculateFileMetrics = async (
     // costs ~0.01 ms, far less than a worker round-trip. The key computed here
     // is carried forward to the miss path so we never hash the same content
     // twice.
-    type UncachedEntry = { file: ProcessedFile; key: string };
-    const cachedResults: FileMetrics[] = [];
+    //
+    // Results are assembled by *index* into filesToProcess, not by path —
+    // multi-root packs can include the same relative path from different roots
+    // and a path-keyed merge would collapse duplicates into one metric.
+    type UncachedEntry = { file: ProcessedFile; key: string; index: number };
+    const allResults: FileMetrics[] = Array.from({ length: filesToProcess.length });
     const uncachedFiles: UncachedEntry[] = [];
 
-    for (const file of filesToProcess) {
+    for (let i = 0; i < filesToProcess.length; i++) {
+      const file = filesToProcess[i];
       const key = contentCacheKey(tokenCounterEncoding, file.content);
       const cached = getCached(key);
       if (cached !== undefined) {
-        cachedResults.push({ path: file.path, charCount: file.content.length, tokenCount: cached });
+        allResults[i] = { path: file.path, charCount: file.content.length, tokenCount: cached };
       } else {
-        uncachedFiles.push({ file, key });
+        uncachedFiles.push({ file, key, index: i });
       }
     }
 
-    const cacheHits = cachedResults.length;
+    const cacheHits = filesToProcess.length - uncachedFiles.length;
     const cacheMisses = uncachedFiles.length;
     logger.trace(`Token count cache: ${cacheHits} hits, ${cacheMisses} misses`);
 
     if (cacheMisses === 0) {
-      // All files were in cache — reconstruct results in original order
-      const resultMap = new Map(cachedResults.map((r) => [r.path, r]));
-      const allResults = filesToProcess.map((file) => resultMap.get(file.path) as FileMetrics);
       const duration = Number(process.hrtime.bigint() - startTime) / 1e6;
       logger.trace(`File metrics calculation completed in ${duration.toFixed(2)}ms (all from cache)`);
       progressCallback(`Calculating metrics... (${allResults.length}/${filesToProcess.length})`);
@@ -76,18 +78,18 @@ export const calculateFileMetrics = async (
 
     let completedItems = cacheHits;
 
-    const batchResults = await Promise.all(
+    await Promise.all(
       batches.map(async (batch) => {
         const tokenCounts = await runBatchTokenCount(deps.taskRunner, {
           items: batch.map(({ file }) => ({ content: file.content, path: file.path })),
           encoding: tokenCounterEncoding,
         });
 
-        const results: FileMetrics[] = batch.map(({ file, key }, index) => {
-          const tokenCount = tokenCounts[index];
+        batch.forEach(({ file, key, index }, i) => {
+          const tokenCount = tokenCounts[i];
           // Reuse the key computed during miss-detection to avoid re-hashing.
           setCached(key, tokenCount);
-          return { path: file.path, charCount: file.content.length, tokenCount };
+          allResults[index] = { path: file.path, charCount: file.content.length, tokenCount };
         });
 
         completedItems += batch.length;
@@ -96,17 +98,8 @@ export const calculateFileMetrics = async (
           `Calculating metrics... (${completedItems}/${filesToProcess.length}) ${pc.dim(lastFile.path)}`,
         );
         logger.trace(`Calculating metrics... (${completedItems}/${filesToProcess.length}) ${lastFile.path}`);
-
-        return results;
       }),
     );
-
-    // Merge cached and worker results back in original file order.
-    const workerResultMap = new Map(batchResults.flat().map((r) => [r.path, r]));
-    const cachedResultMap = new Map(cachedResults.map((r) => [r.path, r]));
-    const allResults = filesToProcess.map((file) => {
-      return (cachedResultMap.get(file.path) ?? workerResultMap.get(file.path)) as FileMetrics;
-    });
 
     const endTime = process.hrtime.bigint();
     const duration = Number(endTime - startTime) / 1e6;

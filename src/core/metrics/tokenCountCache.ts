@@ -9,12 +9,14 @@ import type { TokenEncoding } from './tokenEncodings.js';
 // stale caches are discarded silently.
 const CACHE_VERSION = 1;
 
-// Hard cap on the number of entries held in memory and persisted to disk. At
-// ~32 bytes per JSON entry, 100k entries ≈ 3 MB. Eviction is FIFO on Map
-// insertion order, applied both on `setCached` (to bound the working set in
-// long-running processes such as the MCP server) and again on save (defence
-// in depth — the file cannot exceed the cap even if the eviction logic ever
-// breaks).
+// Hard cap on the number of entries held in memory and persisted to disk.
+// At ~32 bytes per JSON entry, 100k entries ≈ 3 MB on disk; in-memory the
+// V8 `Map<string, number>` with ~48-char string keys is closer to ~10 MB
+// once Map slot and string header overhead are counted. Eviction is FIFO on
+// Map insertion order, applied both on `setCached` (to bound the working
+// set in long-running processes such as the MCP server) and again on save
+// (defence in depth — the file cannot exceed the cap even if the eviction
+// logic ever breaks).
 export const MAX_CACHE_ENTRIES = 100_000;
 
 // Cache lives under $TMPDIR/repomix/cache/, sharing the `repomix/` umbrella

@@ -1,7 +1,8 @@
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ProcessedFile } from '../../../src/core/file/fileTypes.js';
 import { calculateFileMetrics } from '../../../src/core/metrics/calculateFileMetrics.js';
 import type { MetricsTaskRunner } from '../../../src/core/metrics/metricsWorkerRunner.js';
+import { __resetTokenCountCacheForTests } from '../../../src/core/metrics/tokenCountCache.js';
 import {
   countTokens,
   type MetricsWorkerTask,
@@ -35,6 +36,11 @@ const mockInitTaskRunner = (_options: WorkerOptions): MetricsTaskRunner => {
 };
 
 describe('calculateFileMetrics', () => {
+  // The suite-wide `tests/testing/vitestSetup.ts` disables the token-count
+  // cache so worker-dispatch assertions stay deterministic across tests. The
+  // cache-enabled scenarios below opt back in per-test and reset the module
+  // state in their own setup/teardown.
+
   it('should calculate metrics for target files', async () => {
     const processedFiles: ProcessedFile[] = [
       { path: 'file1.txt', content: 'a'.repeat(100) },
@@ -64,6 +70,31 @@ describe('calculateFileMetrics', () => {
     });
 
     expect(result).toEqual([]);
+  });
+
+  // Guards multi-root packs: the same relative path can appear with different
+  // content from different roots. Results must be returned per input index,
+  // not collapsed by path.
+  it('keeps duplicate relative paths separate when contents differ', async () => {
+    const processedFiles: ProcessedFile[] = [
+      { path: 'README.md', content: 'first root content' },
+      { path: 'README.md', content: 'second root content — much longer payload here' },
+    ];
+    const targetFilePaths = processedFiles.map((f) => f.path);
+    const progressCallback: RepomixProgressCallback = vi.fn();
+
+    const result = await calculateFileMetrics(processedFiles, targetFilePaths, 'o200k_base', progressCallback, {
+      taskRunner: mockInitTaskRunner({ numOfTasks: 2, workerType: 'calculateMetrics', runtime: 'worker_threads' }),
+    });
+
+    expect(result).toHaveLength(2);
+    expect(result[0].path).toBe('README.md');
+    expect(result[1].path).toBe('README.md');
+    expect(result[0].charCount).toBe(processedFiles[0].content.length);
+    expect(result[1].charCount).toBe(processedFiles[1].content.length);
+    // Different content → different token counts; the merge must not pick the
+    // same FileMetrics for both indices.
+    expect(result[0].tokenCount).not.toBe(result[1].tokenCount);
   });
 
   // Guards the batching path: files spanning multiple batches must still
@@ -99,5 +130,62 @@ describe('calculateFileMetrics', () => {
     // Multiple batches → multiple taskRunner.run calls and progress callbacks
     expect(runSpy.mock.calls.length).toBeGreaterThan(1);
     expect(progressCallback).toHaveBeenCalledTimes(runSpy.mock.calls.length);
+  });
+
+  // The suite-wide vitest setup disables the token-count cache so worker-
+  // dispatch assertions elsewhere are not skewed by cross-test pollution. The
+  // production cache-hit fast path is therefore not exercised by the default
+  // tests — these scenarios opt back in and assert the end-to-end behavior.
+  describe('token-count cache (production path)', () => {
+    let prevCacheEnv: string | undefined;
+
+    beforeEach(() => {
+      prevCacheEnv = process.env.REPOMIX_TOKEN_CACHE;
+      delete process.env.REPOMIX_TOKEN_CACHE;
+      __resetTokenCountCacheForTests();
+    });
+
+    afterEach(() => {
+      if (prevCacheEnv === undefined) {
+        delete process.env.REPOMIX_TOKEN_CACHE;
+      } else {
+        process.env.REPOMIX_TOKEN_CACHE = prevCacheEnv;
+      }
+      __resetTokenCountCacheForTests();
+    });
+
+    it('skips worker dispatch entirely on a second run when every file is cached', async () => {
+      const processedFiles: ProcessedFile[] = [
+        { path: 'a.txt', content: 'hello world' },
+        { path: 'b.txt', content: 'goodbye world' },
+      ];
+      const targetFilePaths = processedFiles.map((f) => f.path);
+      const progressCallback: RepomixProgressCallback = vi.fn();
+
+      const taskRunner = mockInitTaskRunner({
+        numOfTasks: 2,
+        workerType: 'calculateMetrics',
+        runtime: 'worker_threads',
+      });
+      const runSpy = vi.spyOn(taskRunner, 'run');
+
+      // First run: cold cache — every file dispatches to a worker batch.
+      const first = await calculateFileMetrics(processedFiles, targetFilePaths, 'o200k_base', progressCallback, {
+        taskRunner,
+      });
+      expect(first).toHaveLength(2);
+      expect(runSpy.mock.calls.length).toBeGreaterThan(0);
+
+      // Second run with identical inputs: every file should hit the in-memory
+      // cache populated by the first run, so taskRunner.run must not be
+      // invoked at all.
+      runSpy.mockClear();
+      const second = await calculateFileMetrics(processedFiles, targetFilePaths, 'o200k_base', progressCallback, {
+        taskRunner,
+      });
+
+      expect(runSpy.mock.calls.length).toBe(0);
+      expect(second).toEqual(first);
+    });
   });
 });

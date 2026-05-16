@@ -1,4 +1,4 @@
-import { createHash } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { logger } from '../../shared/logger.js';
@@ -31,12 +31,20 @@ interface CacheData {
 interface CacheState {
   loaded: boolean;
   dirty: boolean;
+  // Monotonic counter incremented on every `setCached`. Save snapshots this
+  // before writing and only clears `dirty` if the value is unchanged after
+  // the write completes — this prevents `setCached` calls that ran during
+  // an in-flight save from silently losing their persistence guarantee
+  // (a race that can hit the MCP server when concurrent `pack()` calls
+  // overlap).
+  revision: number;
   entries: Map<string, number>;
 }
 
 const createState = (): CacheState => ({
   loaded: false,
   dirty: false,
+  revision: 0,
   entries: new Map(),
 });
 
@@ -81,7 +89,11 @@ export const loadTokenCountCache = async (): Promise<void> => {
       logger.trace('Token count cache version mismatch — discarding');
       return;
     }
-    for (const [key, value] of Object.entries(data.entries)) {
+    // `for...in` over the parsed object avoids materialising a 100k-entry
+    // `[key, value]` tuple array via `Object.entries`, which is a measurable
+    // memory spike on cold load when the cache is near its cap.
+    for (const key in data.entries) {
+      const value = data.entries[key];
       if (typeof value === 'number') {
         state.entries.set(key, value);
       }
@@ -111,25 +123,43 @@ export const saveTokenCountCache = async (): Promise<void> => {
     // a single `repomix/` parent. The file itself is mode 0600 below.
     await fs.mkdir(cacheDir, { recursive: true });
 
-    // FIFO eviction: Map iteration order is insertion order, so the oldest
-    // entries appear first. When over the cap, drop the head of the list.
-    let entriesToSave = state.entries;
+    // FIFO eviction defence-in-depth: setCached already caps the in-memory
+    // map at MAX_CACHE_ENTRIES, but a cache file loaded from a previous
+    // version with a larger cap could still arrive oversized. Prune by
+    // iterating keys in insertion order (cheap) instead of materialising
+    // the full entry list (expensive at 100k entries).
     if (state.entries.size > MAX_CACHE_ENTRIES) {
-      const arr = [...state.entries.entries()];
-      entriesToSave = new Map(arr.slice(arr.length - MAX_CACHE_ENTRIES));
+      const toRemove = state.entries.size - MAX_CACHE_ENTRIES;
+      const keys = state.entries.keys();
+      for (let i = 0; i < toRemove; i++) {
+        const oldest = keys.next().value;
+        if (oldest === undefined) break;
+        state.entries.delete(oldest);
+      }
     }
+
+    // Snapshot revision before serialising. Any setCached() that runs while
+    // we are writing will increment state.revision; we use that to decide
+    // whether it is safe to clear state.dirty after the rename completes.
+    const startRevision = state.revision;
 
     const data: CacheData = {
       version: CACHE_VERSION,
-      entries: Object.fromEntries(entriesToSave),
+      entries: Object.fromEntries(state.entries),
     };
 
-    const tmpFile = `${cacheFile}.${process.pid}.tmp`;
+    // Tmp filename includes pid + a random component so two concurrent saves
+    // in the same process (e.g. overlapping pack() calls in the MCP server)
+    // do not collide on the same temp path before the atomic rename.
+    const uniqueSuffix = randomBytes(4).toString('hex');
+    const tmpFile = `${cacheFile}.${process.pid}.${uniqueSuffix}.tmp`;
     await fs.writeFile(tmpFile, JSON.stringify(data), { mode: 0o600 });
     await fs.rename(tmpFile, cacheFile);
 
-    state.dirty = false;
-    logger.trace(`Saved ${entriesToSave.size} token count cache entries to ${cacheFile}`);
+    if (state.revision === startRevision) {
+      state.dirty = false;
+    }
+    logger.trace(`Saved ${state.entries.size} token count cache entries to ${cacheFile}`);
   } catch (error) {
     logger.trace('Failed to save token count cache:', error);
   }
@@ -166,6 +196,7 @@ export const setCached = (key: string, tokenCount: number): void => {
   }
   state.entries.set(key, tokenCount);
   state.dirty = true;
+  state.revision += 1;
 };
 
 /**

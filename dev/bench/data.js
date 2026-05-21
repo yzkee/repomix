@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1778926768624,
+  "lastUpdate": 1779380343503,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -1530,6 +1530,51 @@ window.BENCHMARK_DATA = {
             "range": "±19",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1264ms, Q3: 1283ms\nAll times: 1244, 1247, 1256, 1258, 1261, 1264, 1267, 1269, 1272, 1272, 1274, 1274, 1281, 1282, 1283, 1283, 1296, 1302, 1311, 1314ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5f704397bd5aefb5a6482144285136a9b186bb3d",
+          "message": "Merge pull request #1588 from yamadashy/a11y/tabs-and-file-upload\n\nfix(website): Improve accessibility of tabs and file upload widgets",
+          "timestamp": "2026-05-22T00:25:43+09:00",
+          "tree_id": "546861c642c4b824ae7cd45fa1b806ecbe62a351",
+          "url": "https://github.com/yzkee/repomix/commit/5f704397bd5aefb5a6482144285136a9b186bb3d"
+        },
+        "date": 1779380342548,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 545,
+            "range": "±162",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 477ms, Q3: 639ms\nAll times: 427, 432, 454, 459, 460, 471, 473, 477, 479, 481, 486, 493, 498, 504, 506, 545, 570, 576, 577, 597, 604, 633, 639, 645, 645, 647, 655, 681, 740, 787ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 746,
+            "range": "±16",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 740ms, Q3: 756ms\nAll times: 728, 735, 738, 739, 740, 740, 742, 742, 744, 746, 746, 747, 748, 748, 753, 756, 757, 758, 763, 775ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1023,
+            "range": "±15",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1012ms, Q3: 1027ms\nAll times: 999, 1007, 1009, 1012, 1012, 1012, 1012, 1017, 1020, 1023, 1023, 1023, 1024, 1025, 1026, 1027, 1029, 1029, 1037, 1073ms"
           }
         ]
       }

@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779769142616,
+  "lastUpdate": 1779898724676,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -1710,6 +1710,51 @@ window.BENCHMARK_DATA = {
             "range": "±16",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 820ms, Q3: 836ms\nAll times: 810, 812, 814, 816, 819, 820, 821, 821, 825, 829, 832, 833, 834, 835, 835, 836, 838, 842, 847, 869ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "distinct": true,
+          "id": "6d7800eada2e5a2e4d2ef24dc4c09a18348c5769",
+          "message": "docs(release): Add v1.14.1 release notes\n\nintent(release): document the 1.14.1 security patch (GHSA-9mm9 argument injection, GHSA-hwpp MCP secret-scan bypass) alongside the token-count cache and Dart parsing improvements\ndecision(release-notes): lead with Security since updating is recommended for all users; omit website/deps/internal PRs per release-note guidelines\ndecision(nix): list nixpkgs install under Improvements (user-facing) and the dev flake under Development (contributor-facing), without pinning a nixpkgs version since it lags releases\n\nCo-Authored-By: Claude Opus 4.7 (1M context) <noreply@anthropic.com>",
+          "timestamp": "2026-05-28T00:29:38+09:00",
+          "tree_id": "a29a1cde6027fe0bfe9f55b6215b4772f3a39c4b",
+          "url": "https://github.com/yzkee/repomix/commit/6d7800eada2e5a2e4d2ef24dc4c09a18348c5769"
+        },
+        "date": 1779898724202,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 445,
+            "range": "±27",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 439ms, Q3: 466ms\nAll times: 431, 432, 433, 434, 436, 437, 439, 439, 439, 439, 440, 442, 443, 443, 444, 445, 446, 452, 457, 462, 464, 464, 466, 469, 472, 477, 484, 486, 493, 587ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 727,
+            "range": "±18",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 722ms, Q3: 740ms\nAll times: 712, 718, 719, 720, 721, 722, 724, 726, 726, 726, 727, 729, 731, 734, 740, 740, 741, 744, 751, 755ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1155,
+            "range": "±25",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1143ms, Q3: 1168ms\nAll times: 1115, 1130, 1135, 1137, 1139, 1143, 1144, 1152, 1155, 1155, 1155, 1156, 1157, 1159, 1160, 1168, 1172, 1175, 1180, 1189ms"
           }
         ]
       }

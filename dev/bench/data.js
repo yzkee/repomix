@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782037233966,
+  "lastUpdate": 1782058750904,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2295,6 +2295,51 @@ window.BENCHMARK_DATA = {
             "range": "±17",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1147ms, Q3: 1164ms\nAll times: 1133, 1137, 1137, 1141, 1146, 1147, 1147, 1147, 1148, 1150, 1151, 1156, 1158, 1160, 1162, 1164, 1164, 1169, 1170, 1180ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f04db0088ec00969436a0878bdae8f43176f9e11",
+          "message": "Merge pull request #1631 from Samsen879/codex/fix-remote-split-output-copy\n\nfix(cli): copy split output files after remote packing",
+          "timestamp": "2026-06-22T00:15:00+09:00",
+          "tree_id": "912dc1acf2d96ef0ce452465fe8818ad2ab58688",
+          "url": "https://github.com/yzkee/repomix/commit/f04db0088ec00969436a0878bdae8f43176f9e11"
+        },
+        "date": 1782058750400,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 515,
+            "range": "±35",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 495ms, Q3: 530ms\nAll times: 476, 480, 482, 482, 485, 487, 494, 495, 496, 498, 501, 501, 502, 504, 508, 515, 517, 517, 523, 523, 524, 525, 530, 532, 549, 550, 629, 637, 657, 675ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 862,
+            "range": "±31",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 852ms, Q3: 883ms\nAll times: 841, 842, 842, 847, 850, 852, 852, 852, 854, 861, 862, 862, 865, 868, 869, 883, 893, 906, 908, 982ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1113,
+            "range": "±14",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1109ms, Q3: 1123ms\nAll times: 1096, 1100, 1103, 1108, 1109, 1109, 1109, 1111, 1112, 1112, 1113, 1115, 1115, 1118, 1122, 1123, 1130, 1132, 1139, 1140ms"
           }
         ]
       }

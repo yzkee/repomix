@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782058750904,
+  "lastUpdate": 1782577161289,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2340,6 +2340,51 @@ window.BENCHMARK_DATA = {
             "range": "±14",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1109ms, Q3: 1123ms\nAll times: 1096, 1100, 1103, 1108, 1109, 1109, 1109, 1111, 1112, 1112, 1113, 1115, 1115, 1118, 1122, 1123, 1130, 1132, 1139, 1140ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5f94efc87852dce44731ca9461e2e38847006375",
+          "message": "Merge pull request #1676 from yamadashy/chore/remove-homebrew-autobump-workflow\n\nchore(ci): Remove redundant Homebrew bump workflow",
+          "timestamp": "2026-06-27T23:31:33+09:00",
+          "tree_id": "532d0ad17d9ba066d929e4cc3757ef33ee9f4d42",
+          "url": "https://github.com/yzkee/repomix/commit/5f94efc87852dce44731ca9461e2e38847006375"
+        },
+        "date": 1782577160399,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 549,
+            "range": "±118",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 513ms, Q3: 631ms\nAll times: 495, 502, 505, 505, 506, 507, 507, 513, 514, 515, 525, 534, 536, 539, 543, 549, 559, 566, 578, 591, 603, 619, 631, 643, 646, 648, 736, 784, 830, 865ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 879,
+            "range": "±21",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 871ms, Q3: 892ms\nAll times: 858, 859, 864, 864, 869, 871, 872, 874, 876, 876, 879, 881, 883, 886, 886, 892, 898, 900, 905, 930ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1236,
+            "range": "±19",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1227ms, Q3: 1246ms\nAll times: 1217, 1219, 1221, 1223, 1226, 1227, 1230, 1231, 1231, 1236, 1236, 1239, 1240, 1241, 1245, 1246, 1246, 1251, 1255, 1263ms"
           }
         ]
       }

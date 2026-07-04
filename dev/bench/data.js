@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1782924066841,
+  "lastUpdate": 1783160390495,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2565,6 +2565,51 @@ window.BENCHMARK_DATA = {
             "range": "±23",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1214ms, Q3: 1237ms\nAll times: 1193, 1194, 1203, 1208, 1209, 1214, 1214, 1217, 1222, 1224, 1232, 1234, 1234, 1235, 1236, 1237, 1237, 1240, 1242, 1253ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ea6fccb963c4109e80220557667e61b055a10b56",
+          "message": "Merge pull request #1690 from yamadashy/dependabot/npm_and_yarn/browser/npm_and_yarn-3213b4e331\n\nchore(deps): Bump undici from 7.27.2 to 7.28.0 in /browser in the npm_and_yarn group across 1 directory",
+          "timestamp": "2026-07-04T18:27:38+09:00",
+          "tree_id": "6c6d81a595433d65a1b9a2e7bdfb31145ebe7afa",
+          "url": "https://github.com/yzkee/repomix/commit/ea6fccb963c4109e80220557667e61b055a10b56"
+        },
+        "date": 1783160389858,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 866,
+            "range": "±184",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 791ms, Q3: 975ms\nAll times: 711, 713, 732, 738, 742, 766, 777, 791, 796, 806, 837, 837, 850, 860, 864, 866, 867, 940, 942, 952, 954, 967, 975, 986, 987, 1036, 1059, 1065, 1083, 1110ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 879,
+            "range": "±22",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 874ms, Q3: 896ms\nAll times: 849, 864, 865, 865, 868, 874, 874, 877, 878, 879, 879, 883, 885, 885, 889, 896, 902, 908, 949, 988ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1159,
+            "range": "±28",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1144ms, Q3: 1172ms\nAll times: 1128, 1134, 1134, 1141, 1143, 1144, 1145, 1147, 1148, 1148, 1159, 1160, 1163, 1164, 1164, 1172, 1188, 1205, 1214, 1234ms"
           }
         ]
       }

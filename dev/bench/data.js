@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783203960009,
+  "lastUpdate": 1783312195365,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2655,6 +2655,51 @@ window.BENCHMARK_DATA = {
             "range": "±24",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1195ms, Q3: 1219ms\nAll times: 1183, 1186, 1187, 1188, 1193, 1195, 1199, 1202, 1202, 1205, 1207, 1209, 1210, 1214, 1216, 1219, 1219, 1219, 1219, 1260ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d8d3f65fda5baa9d0feb05fc5fdd289669da70b5",
+          "message": "Merge pull request #1706 from yamadashy/fix/website-ssrf-lfi-clone-url-validation",
+          "timestamp": "2026-07-06T01:09:36+09:00",
+          "tree_id": "6ea66f8a426dbf10298a99821d705d261dc27581",
+          "url": "https://github.com/yzkee/repomix/commit/d8d3f65fda5baa9d0feb05fc5fdd289669da70b5"
+        },
+        "date": 1783312195013,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 523,
+            "range": "±28",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 506ms, Q3: 534ms\nAll times: 498, 498, 499, 502, 503, 504, 504, 506, 507, 509, 509, 511, 513, 515, 518, 523, 523, 526, 527, 530, 530, 531, 534, 538, 543, 562, 581, 595, 621, 632ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 895,
+            "range": "±21",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 886ms, Q3: 907ms\nAll times: 874, 879, 881, 881, 885, 886, 887, 888, 890, 894, 895, 902, 905, 906, 907, 907, 907, 911, 937, 958ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1321,
+            "range": "±67",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1310ms, Q3: 1377ms\nAll times: 1287, 1292, 1296, 1298, 1305, 1310, 1311, 1312, 1312, 1320, 1321, 1331, 1347, 1351, 1354, 1377, 1442, 1465, 1502, 1522ms"
           }
         ]
       }

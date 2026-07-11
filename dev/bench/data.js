@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783614014247,
+  "lastUpdate": 1783786778819,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2745,6 +2745,51 @@ window.BENCHMARK_DATA = {
             "range": "±28",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1133ms, Q3: 1161ms\nAll times: 1112, 1116, 1117, 1126, 1128, 1133, 1137, 1140, 1142, 1148, 1150, 1150, 1155, 1157, 1159, 1161, 1170, 1173, 1177, 1191ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "9a9aa42d6af06e4047efb0f19b24fcde88eb608a",
+          "message": "Merge pull request #1718 from yamadashy/improve/website-a11y-contrast\n\nfix(website): Improve accessibility contrast and add main landmark",
+          "timestamp": "2026-07-12T00:14:30+09:00",
+          "tree_id": "2fc038955aa549e37b3eaef847aeaae9f934c17d",
+          "url": "https://github.com/yzkee/repomix/commit/9a9aa42d6af06e4047efb0f19b24fcde88eb608a"
+        },
+        "date": 1783786778196,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 528,
+            "range": "±78",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 508ms, Q3: 586ms\nAll times: 495, 501, 505, 506, 506, 507, 507, 508, 508, 510, 510, 520, 526, 527, 527, 528, 531, 531, 538, 540, 546, 560, 586, 595, 600, 600, 602, 610, 616, 748ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 898,
+            "range": "±23",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 889ms, Q3: 912ms\nAll times: 876, 877, 878, 881, 881, 889, 891, 894, 895, 897, 898, 898, 900, 906, 907, 912, 961, 986, 1010, 1039ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1097,
+            "range": "±20",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1091ms, Q3: 1111ms\nAll times: 1078, 1084, 1085, 1089, 1091, 1091, 1092, 1093, 1094, 1095, 1097, 1102, 1107, 1109, 1110, 1111, 1112, 1123, 1123, 1203ms"
           }
         ]
       }

@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1783786778819,
+  "lastUpdate": 1783831191599,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2790,6 +2790,51 @@ window.BENCHMARK_DATA = {
             "range": "±20",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1091ms, Q3: 1111ms\nAll times: 1078, 1084, 1085, 1089, 1091, 1091, 1092, 1093, 1094, 1095, 1097, 1102, 1107, 1109, 1110, 1111, 1112, 1123, 1123, 1203ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "144f8d8e1fc68956a0d6179af007ffdcefbc95ee",
+          "message": "Merge pull request #1719 from yamadashy/feat/mcp-output-patterns\n\nfeat(mcp): Expose output.patterns via pack tools",
+          "timestamp": "2026-07-12T13:23:17+09:00",
+          "tree_id": "4467ead4b74a140c75d46645235b7f349cbd79fc",
+          "url": "https://github.com/yzkee/repomix/commit/144f8d8e1fc68956a0d6179af007ffdcefbc95ee"
+        },
+        "date": 1783831191284,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 543,
+            "range": "±31",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 532ms, Q3: 563ms\nAll times: 491, 496, 524, 527, 527, 528, 531, 532, 533, 534, 537, 538, 538, 542, 542, 543, 546, 546, 552, 553, 556, 558, 563, 571, 588, 595, 602, 617, 676, 937ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 916,
+            "range": "±94",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 901ms, Q3: 995ms\nAll times: 890, 899, 900, 900, 900, 901, 903, 904, 908, 909, 916, 917, 921, 926, 955, 995, 1015, 1035, 1066, 1073ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1242,
+            "range": "±31",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1226ms, Q3: 1257ms\nAll times: 1210, 1216, 1220, 1222, 1223, 1226, 1228, 1234, 1235, 1240, 1242, 1242, 1243, 1245, 1246, 1257, 1278, 1331, 1345, 1357ms"
           }
         ]
       }

@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784369970078,
+  "lastUpdate": 1784391597298,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2970,6 +2970,51 @@ window.BENCHMARK_DATA = {
             "range": "±39",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1160ms, Q3: 1199ms\nAll times: 1144, 1145, 1152, 1156, 1158, 1160, 1160, 1161, 1161, 1162, 1164, 1165, 1169, 1172, 1187, 1199, 1201, 1213, 1336, 1516ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "2418bd05ccfbd6c39594854ab12695513afafba9",
+          "message": "Merge pull request #1726 from ShiroKSH/fix/skip-remote-migration\n\nfix(cli): Skip migrations for untrusted remote repos",
+          "timestamp": "2026-07-19T00:21:24+09:00",
+          "tree_id": "bd63c87bf7a93c3638f3b92c8e872e7e2a959dbf",
+          "url": "https://github.com/yzkee/repomix/commit/2418bd05ccfbd6c39594854ab12695513afafba9"
+        },
+        "date": 1784391596307,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 662,
+            "range": "±177",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 575ms, Q3: 752ms\nAll times: 545, 546, 559, 563, 564, 565, 571, 575, 579, 595, 599, 601, 634, 640, 652, 662, 682, 687, 693, 697, 739, 751, 752, 779, 894, 921, 990, 1092, 1196, 1323ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 875,
+            "range": "±10",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 870ms, Q3: 880ms\nAll times: 844, 846, 851, 863, 866, 870, 872, 873, 875, 875, 875, 876, 877, 878, 880, 880, 882, 883, 892, 901ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1171,
+            "range": "±14",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1164ms, Q3: 1178ms\nAll times: 1147, 1149, 1149, 1154, 1158, 1164, 1167, 1167, 1168, 1169, 1171, 1173, 1174, 1177, 1178, 1178, 1179, 1182, 1182, 1193ms"
           }
         ]
       }

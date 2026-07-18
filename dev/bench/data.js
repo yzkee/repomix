@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784197204699,
+  "lastUpdate": 1784369970078,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -2925,6 +2925,51 @@ window.BENCHMARK_DATA = {
             "range": "±24",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1236ms, Q3: 1260ms\nAll times: 1214, 1229, 1231, 1231, 1234, 1236, 1238, 1241, 1241, 1245, 1245, 1246, 1253, 1253, 1257, 1260, 1263, 1276, 1286, 1301ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "71ba866e272054e74ed7b26f5db897d2489fb3c2",
+          "message": "Merge pull request #1739 from yamadashy/renovate/major-website-major-dependencies\n\nchore(deps): update dependency typescript to v7",
+          "timestamp": "2026-07-18T16:21:26+09:00",
+          "tree_id": "faee9f4afc2684bc4757935e60d0c8e7ce357153",
+          "url": "https://github.com/yzkee/repomix/commit/71ba866e272054e74ed7b26f5db897d2489fb3c2"
+        },
+        "date": 1784369969149,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 741,
+            "range": "±76",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 688ms, Q3: 764ms\nAll times: 604, 615, 623, 661, 672, 674, 675, 688, 701, 713, 715, 719, 726, 737, 739, 741, 745, 749, 753, 754, 759, 759, 764, 770, 788, 814, 841, 859, 860, 890ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 693,
+            "range": "±84",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 684ms, Q3: 768ms\nAll times: 661, 669, 676, 679, 679, 684, 688, 688, 690, 692, 693, 712, 717, 731, 752, 768, 774, 776, 793, 795ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1164,
+            "range": "±39",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1160ms, Q3: 1199ms\nAll times: 1144, 1145, 1152, 1156, 1158, 1160, 1160, 1161, 1161, 1162, 1164, 1165, 1169, 1172, 1187, 1199, 1201, 1213, 1336, 1516ms"
           }
         ]
       }

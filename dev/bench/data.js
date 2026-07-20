@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784457055065,
+  "lastUpdate": 1784543196933,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -3060,6 +3060,51 @@ window.BENCHMARK_DATA = {
             "range": "±87",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1376ms, Q3: 1463ms\nAll times: 1341, 1349, 1353, 1365, 1370, 1376, 1384, 1385, 1391, 1391, 1393, 1395, 1437, 1447, 1461, 1463, 1535, 1556, 1594, 1596ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bbab507f6d38f8e0a4a64c39cba4d068f31964e0",
+          "message": "Merge pull request #1746 from yamadashy/docs/remote-trust-config-warning\n\ndocs(website): Warn that --remote-trust-config runs untrusted config",
+          "timestamp": "2026-07-20T12:37:47+09:00",
+          "tree_id": "df8e99e93b586b545f8565c35497b0141d1ea77b",
+          "url": "https://github.com/yzkee/repomix/commit/bbab507f6d38f8e0a4a64c39cba4d068f31964e0"
+        },
+        "date": 1784543196568,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 532,
+            "range": "±36",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 517ms, Q3: 553ms\nAll times: 484, 487, 488, 492, 509, 513, 516, 517, 521, 522, 522, 523, 525, 529, 530, 532, 533, 534, 534, 535, 544, 544, 553, 561, 564, 565, 574, 587, 588, 669ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 917,
+            "range": "±25",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 902ms, Q3: 927ms\nAll times: 873, 885, 892, 895, 895, 902, 909, 910, 910, 916, 917, 919, 921, 921, 924, 927, 932, 938, 944, 1011ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1217,
+            "range": "±200",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1164ms, Q3: 1364ms\nAll times: 1150, 1151, 1151, 1155, 1160, 1164, 1168, 1174, 1180, 1183, 1217, 1244, 1294, 1325, 1361, 1364, 1460, 1489, 1502, 1573ms"
           }
         ]
       }

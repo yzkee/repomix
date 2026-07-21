@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1784543196933,
+  "lastUpdate": 1784652312952,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -3105,6 +3105,51 @@ window.BENCHMARK_DATA = {
             "range": "±200",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1164ms, Q3: 1364ms\nAll times: 1150, 1151, 1151, 1155, 1160, 1164, 1168, 1174, 1180, 1183, 1217, 1244, 1294, 1325, 1361, 1364, 1460, 1489, 1502, 1573ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "450ec6935d7cee3d00837676c28d405b9d25d03c",
+          "message": "Merge pull request #1723 from yamadashy/chore/schema-update\n\nchore(schema): Update configuration JSON schema",
+          "timestamp": "2026-07-22T00:32:10+09:00",
+          "tree_id": "94573bbf49f3756071cee7309b2d504fd39e22af",
+          "url": "https://github.com/yzkee/repomix/commit/450ec6935d7cee3d00837676c28d405b9d25d03c"
+        },
+        "date": 1784652312581,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 817,
+            "range": "±188",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 715ms, Q3: 903ms\nAll times: 637, 650, 654, 673, 678, 685, 686, 715, 723, 733, 736, 780, 786, 806, 816, 817, 818, 823, 844, 869, 873, 903, 903, 905, 923, 931, 932, 953, 1038, 1080ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 989,
+            "range": "±18",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 981ms, Q3: 999ms\nAll times: 937, 964, 965, 971, 980, 981, 983, 983, 985, 988, 989, 990, 993, 993, 998, 999, 1008, 1013, 1020, 1050ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1122,
+            "range": "±21",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1115ms, Q3: 1136ms\nAll times: 1098, 1109, 1110, 1113, 1113, 1115, 1119, 1122, 1122, 1122, 1122, 1123, 1125, 1125, 1126, 1136, 1138, 1141, 1160, 1176ms"
           }
         ]
       }

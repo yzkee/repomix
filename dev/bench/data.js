@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1785601116469,
+  "lastUpdate": 1785665997518,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -3375,6 +3375,51 @@ window.BENCHMARK_DATA = {
             "range": "±22",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1316ms, Q3: 1338ms\nAll times: 1280, 1290, 1293, 1314, 1316, 1316, 1316, 1317, 1318, 1319, 1321, 1324, 1324, 1332, 1333, 1338, 1352, 1366, 1368, 1512ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "44437378d809084a5f264234f588d6b301457858",
+          "message": "Merge pull request #1769 from yamadashy/fix/mcp-sandbox-symlink-escape\n\nfix(mcp): Close a symlink escape in the sandbox pack confinement",
+          "timestamp": "2026-08-02T02:00:40+09:00",
+          "tree_id": "45fa0dc1503bd205d4e404509b8904bfe59f2402",
+          "url": "https://github.com/yzkee/repomix/commit/44437378d809084a5f264234f588d6b301457858"
+        },
+        "date": 1785665996998,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 571,
+            "range": "±40",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 559ms, Q3: 599ms\nAll times: 529, 544, 545, 546, 550, 553, 555, 559, 560, 561, 561, 563, 566, 568, 569, 571, 580, 581, 583, 587, 587, 599, 599, 600, 603, 622, 629, 688, 689, 723ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 879,
+            "range": "±27",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 873ms, Q3: 900ms\nAll times: 849, 860, 866, 868, 868, 873, 874, 876, 876, 878, 879, 881, 887, 893, 897, 900, 980, 994, 1006, 1008ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1271,
+            "range": "±23",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1267ms, Q3: 1290ms\nAll times: 1235, 1257, 1257, 1262, 1263, 1267, 1268, 1268, 1270, 1271, 1271, 1272, 1276, 1277, 1288, 1290, 1290, 1292, 1296, 1296ms"
           }
         ]
       }

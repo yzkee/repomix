@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1786184325286,
+  "lastUpdate": 1786292354097,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -3555,6 +3555,51 @@ window.BENCHMARK_DATA = {
             "range": "±13",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1298ms, Q3: 1311ms\nAll times: 1257, 1277, 1294, 1296, 1298, 1298, 1300, 1300, 1300, 1301, 1301, 1301, 1302, 1304, 1311, 1311, 1312, 1313, 1325, 1333ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "172b800f0a47d9c0c8ff31f0cea7cfd679f9bb1d",
+          "message": "Merge pull request #1795 from yamadashy/fix/zip-upload-skip-local-config\n\nfix(security): Prevent RCE from uploaded ZIP contents on the website pack API",
+          "timestamp": "2026-08-10T00:28:42+09:00",
+          "tree_id": "5a716e32c4ddffe738e0a1a959a49cd470ca0722",
+          "url": "https://github.com/yzkee/repomix/commit/172b800f0a47d9c0c8ff31f0cea7cfd679f9bb1d"
+        },
+        "date": 1786292353564,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 709,
+            "range": "±207",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 612ms, Q3: 819ms\nAll times: 558, 570, 586, 592, 607, 610, 611, 612, 668, 672, 682, 686, 694, 702, 708, 709, 712, 714, 714, 735, 763, 804, 819, 863, 878, 897, 904, 918, 933, 987ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 742,
+            "range": "±18",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 737ms, Q3: 755ms\nAll times: 713, 715, 729, 732, 735, 737, 738, 738, 739, 740, 742, 742, 744, 746, 752, 755, 758, 761, 764, 788ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1363,
+            "range": "±28",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1345ms, Q3: 1373ms\nAll times: 1325, 1337, 1340, 1342, 1342, 1345, 1346, 1350, 1354, 1356, 1363, 1365, 1365, 1366, 1369, 1373, 1374, 1374, 1380, 1422ms"
           }
         ]
       }

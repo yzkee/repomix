@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789229978677,
+  "lastUpdate": 1789316383129,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -4185,6 +4185,51 @@ window.BENCHMARK_DATA = {
             "range": "±23",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1318ms, Q3: 1341ms\nAll times: 1302, 1302, 1305, 1311, 1314, 1318, 1321, 1324, 1326, 1328, 1330, 1333, 1334, 1337, 1340, 1341, 1343, 1346, 1352, 1372ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "6c5ead0d2b83911d4284be9f3424e7381ae44763",
+          "message": "Merge pull request #1853 from yamadashy/renovate/browser-non-major-dependencies\n\nchore(deps): update dependency @types/chrome to ^0.2.9",
+          "timestamp": "2026-09-13T15:38:37+09:00",
+          "tree_id": "54eaf05dcdddf487be7a7a4232eeaf37a0a5744d",
+          "url": "https://github.com/yzkee/repomix/commit/6c5ead0d2b83911d4284be9f3424e7381ae44763"
+        },
+        "date": 1789316382014,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 772,
+            "range": "±186",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 706ms, Q3: 892ms\nAll times: 613, 628, 639, 640, 670, 684, 690, 706, 713, 718, 721, 745, 746, 746, 753, 772, 787, 811, 814, 832, 869, 890, 892, 895, 899, 900, 903, 904, 936, 960ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 987,
+            "range": "±21",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 976ms, Q3: 997ms\nAll times: 955, 958, 965, 967, 975, 976, 979, 982, 984, 985, 987, 992, 994, 995, 995, 997, 1061, 1094, 1146, 1168ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 996,
+            "range": "±22",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 986ms, Q3: 1008ms\nAll times: 966, 979, 983, 984, 985, 986, 987, 990, 990, 992, 996, 996, 997, 1006, 1007, 1008, 1016, 1018, 1033, 1033ms"
           }
         ]
       }

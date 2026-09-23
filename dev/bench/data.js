@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789921134495,
+  "lastUpdate": 1790137142306,
   "repoUrl": "https://github.com/yzkee/repomix",
   "entries": {
     "Repomix Performance": [
@@ -4365,6 +4365,51 @@ window.BENCHMARK_DATA = {
             "range": "±19",
             "unit": "ms",
             "extra": "Median of 20 runs\nQ1: 1222ms, Q3: 1241ms\nAll times: 1200, 1208, 1209, 1213, 1214, 1222, 1222, 1224, 1225, 1226, 1227, 1229, 1230, 1232, 1236, 1241, 1242, 1245, 1309, 1338ms"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "koukun0120@gmail.com",
+            "name": "Kazuki Yamada",
+            "username": "yamadashy"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "4299b5838ef4013cf63b54c93208a6bbfb0f5383",
+          "message": "Merge pull request #1889 from yamadashy/ci/jev-issue-labeler-v0.1.1\n\nci(workflows): Bump the Jev issue labeler to v0.1.1",
+          "timestamp": "2026-09-21T21:02:41+09:00",
+          "tree_id": "48f43fcea6edeaec20762867aec76291cbb71dba",
+          "url": "https://github.com/yzkee/repomix/commit/4299b5838ef4013cf63b54c93208a6bbfb0f5383"
+        },
+        "date": 1790137141239,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Repomix Pack (macOS)",
+            "value": 1114,
+            "range": "±299",
+            "unit": "ms",
+            "extra": "Median of 30 runs\nQ1: 920ms, Q3: 1219ms\nAll times: 707, 756, 773, 817, 846, 904, 920, 920, 965, 966, 1002, 1017, 1039, 1056, 1094, 1114, 1125, 1144, 1147, 1166, 1194, 1198, 1219, 1220, 1231, 1234, 1235, 1236, 1345, 1469ms"
+          },
+          {
+            "name": "Repomix Pack (Linux)",
+            "value": 719,
+            "range": "±28",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 713ms, Q3: 741ms\nAll times: 706, 707, 710, 710, 712, 713, 713, 714, 714, 719, 719, 720, 723, 723, 730, 741, 789, 815, 830, 850ms"
+          },
+          {
+            "name": "Repomix Pack (Windows)",
+            "value": 1311,
+            "range": "±21",
+            "unit": "ms",
+            "extra": "Median of 20 runs\nQ1: 1306ms, Q3: 1327ms\nAll times: 1286, 1289, 1291, 1296, 1301, 1306, 1307, 1308, 1310, 1310, 1311, 1311, 1317, 1319, 1324, 1327, 1327, 1337, 1342, 1363ms"
           }
         ]
       }
